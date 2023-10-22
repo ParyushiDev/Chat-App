@@ -6,16 +6,7 @@ const messageRoutes = require("./routes/messages");
 const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
-// app.use(cors());
-
-//for vercel
-app.use(
-  cors({
-    origin: ["https://hun-han-frontend.vercel.app/login"], //frontend url
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 mongoose
@@ -38,7 +29,8 @@ const server = app.listen(process.env.PORT, () =>
 );
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: "https://hun-han-frontend.vercel.app/login", //connected to frontend in vercel
     credentials: true,
   },
 });
