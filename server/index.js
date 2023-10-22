@@ -6,8 +6,16 @@ const messageRoutes = require("./routes/messages");
 const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
+// app.use(cors());
 
-app.use(cors());
+//for vercel
+app.use(
+  cors({
+    origin: ["https://hun-han-frontend.vercel.app/login"], //frontend url
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 mongoose
