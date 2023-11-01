@@ -36,7 +36,7 @@ const io = socket(server, {
   },
 });
 
-global.onlineUsers = new Map();
+global.onlineUsers = new Map(); //declared a global variable and map is used to map the userID's to their SocketId's
 io.on("connection", (socket) => {
   global.chatSocket = socket;
   socket.on("add-user", (userId) => {
@@ -46,6 +46,7 @@ io.on("connection", (socket) => {
   socket.on("send-msg", (data) => {
     const sendUserSocket = onlineUsers.get(data.to);
     if (sendUserSocket) {
+      //checks if a user is online
       socket.to(sendUserSocket).emit("msg-recieve", data.msg);
     }
   });
