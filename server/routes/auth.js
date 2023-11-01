@@ -6,8 +6,6 @@ const {
   logOut,
 } = require("../controllers/userController");
 
-// const cors = require("cors");
-
 const router = require("express").Router();
 
 router.post("/login", login);

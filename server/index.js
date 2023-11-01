@@ -21,10 +21,6 @@ mongoose
     console.log(err.message);
   });
 
-app.get("/", (req, res) => {
-  res.write("hello");
-});
-
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
@@ -35,8 +31,7 @@ const server = app.listen(process.env.PORT, () =>
 );
 const io = socket(server, {
   cors: {
-    // origin: "http://localhost:3000",
-    origin: "https://hun-han-frontend.vercel.app/login", //connected to frontend in vercel
+    origin: "http://localhost:3000",
     credentials: true,
   },
 });
